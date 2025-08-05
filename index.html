@@ -339,15 +339,21 @@
 
             console.log('Bingo submission data:', submissionData);
             
-            // TODO: Send to webhook here
-            // fetch('YOUR_MAKE_COM_WEBHOOK_URL', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(submissionData)
-            // });
-            
-            alert('🎉 Congratulations! Your bingo card has been submitted successfully! Good luck with the prizes! 🏆');
-        }
+            // Send to Make.com webhook
+fetch(https://hook.eu2.make.com/ov247cy7b2qhdz1noqsy112f539hsp7v, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(submissionData)
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Success:', data);
+    alert('🎉 Congratulations! Your bingo card has been submitted successfully! Good luck with the prizes! 🏆');
+})
+.catch((error) => {
+    console.error('Error:', error);
+    alert('There was an issue submitting your bingo card. Please try again!');
+});
 
         // Initialize the game when page loads
         document.addEventListener('DOMContentLoaded', initGame);
